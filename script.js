@@ -6,10 +6,6 @@ let animations = [
         document.title = msg.substring(this.pos) + msg.substring(0, this.pos);
         this.pos = (this.pos + 1) % msg.length;
     },
-    function() {
-        this.blink = this.blink!== undefined?!this.blink : true;
-        document.title = this.blink? "popzzi" : "popzzi";
-    }
 ];
 let currentAnim = 0;
 let counter = 0;
