@@ -8,7 +8,7 @@ let animations = [
     },
     function() {
         this.blink = this.blink!== undefined?!this.blink : true;
-        document.title = this.blink? "popzzi" : " ";
+        document.title = this.blink? "popzzi" : "popzzi";
     }
 ];
 let currentAnim = 0;
