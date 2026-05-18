@@ -241,7 +241,7 @@ body {
 }
 
 /* Volume Button */
-.volume-btn {
+.volumeBtn {
   position: fixed;
   top: 20px;
   right: 20px;
@@ -259,7 +259,7 @@ body {
   box-shadow: 0 0 15px rgba(0,240,255,0.4);
 }
 
-.volume-btn:hover {
+.volumeBtn:hover {
   background: #00f0ff;
   color: black;
   box-shadow: 0 0 30px #00f0ff;
