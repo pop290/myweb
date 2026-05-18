@@ -200,13 +200,6 @@ function createTrail(x, y) {
 
 const audio = document.getElementById('bgMusic');
 const volumeBtn = document.getElementById('volumeBtn');
-let isMuted = true;
-
-// Page load una gaman try karanawa muted play karanna
-window.addEventListener('load', () => {
-  audio.volume = 0.4; // volume eka 40% ta set kala
-  audio.play().catch(err => console.log('Autoplay blocked:', err));
-});
 
 // Volume button click
 volumeBtn.addEventListener('click', () => {
@@ -227,3 +220,20 @@ document.addEventListener('click', () => {
     audio.play();
   }
 }, { once: true });
+
+// Page load una gaman try karanawam ----------------------------------------------------------------------------------------------
+window.addEventListener('load', async () => {
+  try {
+    await audio.play(); // Block nathnam meke play wenawa
+    console.log('Autoplay worked');
+  } catch (err) {
+    console.log('Autoplay blocked, showing button');
+    volumeBtn.style.display = 'block'; // Block una nam button eka pennanawa
+  }
+});
+
+// Button eka click karoth play karanawa
+volumeBtn.addEventListener('click', () => {
+  audio.play();
+  volumeBtn.style.display = 'none';
+})
