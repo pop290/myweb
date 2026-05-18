@@ -197,3 +197,33 @@ function createTrail(x, y) {
     setTimeout(() => trail.remove(), 600);
   }, 10);
 }
+
+const audio = document.getElementById('bgMusic');
+const volumeBtn = document.getElementById('volumeBtn');
+let isMuted = true;
+
+// Page load una gaman try karanawa muted play karanna
+window.addEventListener('load', () => {
+  audio.volume = 0.4; // volume eka 40% ta set kala
+  audio.play().catch(err => console.log('Autoplay blocked:', err));
+});
+
+// Volume button click
+volumeBtn.addEventListener('click', () => {
+  if (isMuted) {
+    audio.muted = false;
+    volumeBtn.textContent = '🔊';
+    isMuted = false;
+  } else {
+    audio.muted = true;
+    volumeBtn.textContent = '🔇';
+    isMuted = true;
+  }
+});
+
+// User kohom hari page eke click karoth unmute karanna option eka
+document.addEventListener('click', () => {
+  if (audio.paused) {
+    audio.play();
+  }
+}, { once: true });
