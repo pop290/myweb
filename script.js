@@ -201,8 +201,32 @@ function createTrail(x, y) {
 const audio = document.getElementById('bgMusic');
 const volumeBtn = document.getElementById('volumeBtn');
 
-// Volume button click
+// meka add karanna ona - initial state
+let isMuted = true;
+
+audio.volume = 0.4;
+
+// 1. Page load una gaman try karanawa
+window.addEventListener('load', async () => {
+  try {
+    await audio.play(); // muted nisa block wenne na
+    console.log('Autoplay worked');
+    audio.muted = false; // play wela passe unmute karanawa
+    volumeBtn.textContent = '🔊';
+    isMuted = false;
+  } catch (err) {
+    console.log('Autoplay blocked, showing button');
+    volumeBtn.style.display = 'block'; // button eka pennanawa
+    volumeBtn.textContent = '🔊 Click to Play';
+  }
+});
+
+// 2. Volume button click - ekak witharai ona
 volumeBtn.addEventListener('click', () => {
+  if (audio.paused) {
+    audio.play();
+  }
+  
   if (isMuted) {
     audio.muted = false;
     volumeBtn.textContent = '🔊';
@@ -214,26 +238,9 @@ volumeBtn.addEventListener('click', () => {
   }
 });
 
-// User kohom hari page eke click karoth unmute karanna option eka
+// 3. User kohom hari click karoth play karanna - optional
 document.addEventListener('click', () => {
   if (audio.paused) {
     audio.play();
   }
 }, { once: true });
-
-// Page load una gaman try karanawam ----------------------------------------------------------------------------------------------
-window.addEventListener('load', async () => {
-  try {
-    await audio.play(); // Block nathnam meke play wenawa
-    console.log('Autoplay worked');
-  } catch (err) {
-    console.log('Autoplay blocked, showing button');
-    volumeBtn.style.display = 'block'; // Block una nam button eka pennanawa
-  }
-});
-
-// Button eka click karoth play karanawa
-volumeBtn.addEventListener('click', () => {
-  audio.play();
-  volumeBtn.style.display = 'none';
-})
