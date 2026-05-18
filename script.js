@@ -154,3 +154,46 @@ window.addEventListener('resize', () => {
     canvas.height = window.innerHeight;
     initParticles();
 });
+
+const cursorDot = document.getElementById('cursorDot');
+let mouseX = 0, mouseY = 0;
+let dotX = 0, dotY = 0;
+
+// Mouse position eka ganna
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  
+  // Trail particle hadanawa
+  createTrail(mouseX, mouseY);
+});
+
+// Smooth follow effect
+function animateCursor() {
+  dotX += (mouseX - dotX) * 0.15;
+  dotY += (mouseY - dotY) * 0.15;
+  
+  cursorDot.style.left = dotX + 'px';
+  cursorDot.style.top = dotY + 'px';
+  
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+// Trail effect hadana function eka
+function createTrail(x, y) {
+  const trail = document.createElement('div');
+  trail.className = 'cursor-trail';
+  trail.style.left = x + 'px';
+  trail.style.top = y + 'px';
+  
+  document.body.appendChild(trail);
+  
+  // Fade out karala ain karanawa
+  setTimeout(() => {
+    trail.style.transition = 'all 0.6s ease-out';
+    trail.style.opacity = '0';
+    trail.style.transform = 'scale(0)';
+    setTimeout(() => trail.remove(), 600);
+  }, 10);
+}
