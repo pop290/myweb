@@ -212,3 +212,30 @@ p {
   color: black;
   box-shadow: 0 0 20px #00f0ff;
 }
+
+body {
+  cursor: none; /* default cursor eka ain karanawa */
+}
+
+/* Mouse follower dot */
+.cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: #00f0ff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  box-shadow: 0 0 15px #00f0ff, 0 0 30px #00f0ff;
+}
+
+/* Trail particles */
+.cursor-trail {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: rgba(0, 240, 255, 0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+}
