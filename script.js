@@ -217,7 +217,7 @@ window.addEventListener('load', async () => {
   } catch (err) {
     console.log('Autoplay blocked, showing button');
     volumeBtn.style.display = 'block'; // button eka pennanawa
-    volumeBtn.textContent = '🔊 Click to Play';
+    volumeBtn.textContent = '🔇';
   }
 });
 
